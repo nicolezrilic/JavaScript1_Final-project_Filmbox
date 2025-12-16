@@ -103,4 +103,45 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+		{
+		id: 'notting-hill',
+		nazev: 'Notting Hill',
+		plakat: {
+			url: 'https://upload.wikimedia.org/wikipedia/en/3/38/NottingHillRobertsGrant.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Romantický film s Julií Roberts.',
+		popis:
+			'Zatímco ona je slavná hollywoodská hvězda a celý svět jí leží u nohou, on má malou prodejnu knih v malebné londýnské čtvrti. Anna Scottová, herečka, která do Anglie přijela na premiéru svého nového filmu, zajde do krámku nesmělého Williama zcela náhodou. Z oboustranného zájmu však začne klíčit vztah, který nutně musí projít zatěžkávací zkouškou. Ale někdy i dva lidé ze zcela odlišných světů mohou najít společnou cestu životem.',
+		premiera: '1999',
+	},
 ]
+
+const seznamFilmu = document.querySelector('#seznam-filmu');
+seznamFilmu.innerHTML = '';
+
+filmy.forEach((film) => {
+	seznamFilmu.innerHTML += `
+		<div class="col">
+  			<div class="card">
+    			<img
+					src=${film.plakat.url}
+					width="780"
+					height="520"
+					class="card-img-top"
+					alt="plakát"
+    			/>
+				<div class="card-body">
+					<h5 class="card-title">${film.nazev}</h5>
+					<p class="card-text">${film.ochutnavka}.</p>
+					<a class="btn btn-primary" href="film.html#${film.id}">Přehrát</a>
+				</div>
+  			</div>
+		</div>
+	`;
+});
+
+
+
+

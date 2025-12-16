@@ -104,3 +104,21 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+
+const filmId = window.location.hash.slice(1);
+const filmData = filmy.find((film) => film.id === filmId);
+
+const cardTitleElm = document.querySelector('.card-title');
+cardTitleElm.textContent =
+	filmData.nazev		//tady nebude ${}, prootžepoužívám textContent, a ne innerHTML
+;
+
+const cardDescription = document.querySelector('.card-text');
+cardDescription.textContent =
+	filmData.popis	
+;
+
+const cardPlakatUrl = document.querySelector('.img-fluid rounded-start');
+cardPlakatUrl.imageObject =
+	filmData.plakat.url	
+;
