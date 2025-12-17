@@ -137,3 +137,46 @@ cardPlakat.src =					//Pomocí vlastnosti "src" změním zdroj obrázku, totˇv�
 ;
 
 // Obrázek má v HTML 2 třídy, první je .img-fluid a druhá je .rounded-start, proto před rounded-start musí být také tečka.
+
+const form = document.querySelector('#note-form');
+const messageInput = document.querySelector('#message-input');
+const checkbox = document.querySelector('#terms-checkbox');
+
+	form.addEventListener('submit', (event) => {
+		event.preventDefault();							//preventDefault zamezí odeslání formuláře 
+
+		let isValid = true;
+
+	//KONTROLA TEXT. POLE					
+	if (messageInput.value.trim() === '') {				//pokud uživatel nic nenapsal, proto mezi uvozovkami nic není
+		messageInput.classList.add('is-invalid');	//pak přidej třídu invalid
+		messageInput.focus();			//zaměří uživatele na textové pole, které je třeba vyplnit
+		isValid = false;	
+	} else {												//v opačném případě, tedy pokud něco napsal
+		messageInput.classList.remove('is-invalid');		//třídu invalid odstraň
+		}	
+	//KONTROLA CHECKBOXU, jen pokud text je vyplněný
+	if (isValid && !checkbox.checked) {
+		checkbox.classList.add('is-invalid');
+		isValid = false;
+	} else {
+		checkbox.classList.remove('is-invalid');
+	}	
+	/*SPLNĚNÍ OBOU PODMÍNEK = text. pole není prázdné + checkbox je zaškrtnutý.*/
+	if (isValid) {		//form.innerHTML =, tím smažu celý forulář a vložím tam text, který uživatel napsal do text. pole 
+		form.innerHTML = `				
+		 <p class="card-text">${messageInput.value}</p>
+		`;
+	}
+	});
+
+
+/*
+1. trim() odstraní mezery na začátku a konci řetězce, tedy např. kdyby uživatel vyplnil jen mezeru.
+2. checkbox se nekontroluje přes "value", ale přes vlastnost checkbox.checked, jejímž výsledkem je buď true nebo false. 
+3. .focus() se volá na konkrétní formulářový prvek (input, textarea, checkbox), a to ideálně jen na první neplatný prvek, např.
+pokud je prázdný text → fokus má dostat textové pole,
+pokud je text OK, ale checkbox ne → fokus má dostat checkbox
+
+
+*/
