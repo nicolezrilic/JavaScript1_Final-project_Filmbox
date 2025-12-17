@@ -118,11 +118,11 @@ const filmy = [
 	},
 ]
 
-const seznamFilmu = document.querySelector('#seznam-filmu');
-seznamFilmu.innerHTML = '';
+const filmsList = document.querySelector('#seznam-filmu');
+filmsList.innerHTML = '';		//Tímto jsme vymazali vnitřní HTML prvku, aby byl prázdný. 
 
 filmy.forEach((film) => {
-	seznamFilmu.innerHTML += `
+	filmsList.innerHTML += `			
 		<div class="col">
   			<div class="card">
     			<img
@@ -135,7 +135,7 @@ filmy.forEach((film) => {
 				<div class="card-body">
 					<h5 class="card-title">${film.nazev}</h5>
 					<p class="card-text">${film.ochutnavka}.</p>
-					<a class="btn btn-primary" href="film.html#${film.id}">Přehrát</a>
+					<a href="film.html#${film.id}" class="btn btn-primary">Přehrát</a>
 				</div>
   			</div>
 		</div>
@@ -144,4 +144,4 @@ filmy.forEach((film) => {
 
 
 
-
+// Pokud by za filmsList.innerHTML bylo jen =, a ne +=, vypsal by se pouze poslední film. Proč zrovna poslední, a ne první? Protože třetí film přepíše druhý, čtvrtý přepíše třetí, až ten poslední přepíše předposlední. Když použiju znak +=, tak se vypíšou i předchozí filmy, tedy všechny ze seznamu. 
